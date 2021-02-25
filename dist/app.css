@@ -1,0 +1,147 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #5CDB95;
+  width: 100%;
+  height: 200px;
+}
+nav .hexagon {
+  background-color: white;
+  position: relative;
+  width: 100px;
+  height: calc(100px / 1.73);
+  margin: calc(100px / 1.73 / 2) 50px;
+}
+nav .hexagon img {
+  width: 60px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* left: 20px;
+  bottom: -5px; */
+  z-index: 5;
+}
+nav .hexagon::before, nav .hexagon::after {
+  content: "";
+  position: absolute;
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+}
+nav .hexagon::before {
+  bottom: 100%;
+  border-bottom: calc(100px / 1.73 /2) solid white;
+}
+nav .hexagon::after {
+  top: 100%;
+  border-top: calc(100px / 1.73 /2) solid white;
+}
+nav .menu {
+  font-family: "Anton", sans-serif;
+  font-size: xx-large;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+}
+nav .menu li {
+  margin: 20px;
+  color: #05386B;
+}
+nav .none {
+  display: none;
+}
+
+.hero {
+  width: 100%;
+  height: 700px;
+  background-color: #05386B;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero .circle {
+  background-color: #EDF5E1;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+}
+.hero .circle img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+}
+
+main {
+  height: auto;
+  width: 100%;
+}
+main .about {
+  padding: 0 200px;
+  background-color: #05386B;
+}
+main .about h1 {
+  font-family: "Anton", sans-serif;
+  font-size: 60px;
+  color: #EDF5E1;
+}
+main .about .presentation {
+  font-family: "Anton", sans-serif;
+  font-size: 40px;
+  color: #8EE4AF;
+}
+main .arrow-dark {
+  width: 100vw;
+  height: 300px;
+  border-top: 150px solid #05386B;
+  border-right: calc(100vw / 2) solid #EDF5E1;
+  border-bottom: 150px solid #EDF5E1;
+  border-left: calc(100vw / 2) solid #EDF5E1;
+}
+main .arrow-light {
+  width: 100vw;
+  height: 300px;
+  border-top: 150px solid #EDF5E1;
+  border-right: calc(100vw / 2) solid #05386B;
+  border-bottom: 150px solid #05386B;
+  border-left: calc(100vw / 2) solid #05386B;
+}
+main .projects {
+  background-color: #EDF5E1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  padding: 0 200px;
+}
+main .projects h1 {
+  font-family: "Anton", sans-serif;
+  font-size: 60px;
+  color: #05386B;
+}
+main .projects .box {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+main .projects .box .card {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  height: auto;
+  margin: 20px;
+}
+main .projects .box .card img {
+  width: 100%;
+}

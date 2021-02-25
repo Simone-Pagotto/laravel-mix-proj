@@ -1,0 +1,79 @@
+@use "var.scss";
+
+main{
+    
+    height: auto;
+    width: 100%;
+
+    .about{
+        padding: 0 200px;
+        background-color: var.$dark-color;
+
+        h1{
+            font-family: var.$font-stack;
+            font-size: 60px;
+            color: var.$light-color;
+        }
+
+        .presentation{
+            font-family: var.$font-stack;
+            font-size: 40px;
+            color: var.$lighter-color;
+        }
+    }
+
+    .arrow-dark{
+        width:100vw;
+        height: 300px;
+        border-top: 150px solid var.$dark-color;
+        border-right: calc(100vw / 2) solid var.$light-color;
+        border-bottom: 150px solid var.$light-color;
+        border-left: calc(100vw / 2) solid var.$light-color;
+    }
+
+    .arrow-light{
+        width:100vw;
+        height: 300px;
+        border-top: 150px solid var.$light-color;
+        border-right: calc(100vw / 2) solid var.$dark-color;
+        border-bottom: 150px solid var.$dark-color;
+        border-left: calc(100vw / 2) solid var.$dark-color;
+    }
+
+    .projects{
+        background-color: var.$light-color;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+
+        padding: 0 200px;
+        h1{
+                        font-family: var.$font-stack;
+                        font-size: 60px;
+                        color: var.$dark-color;
+                    }
+                    
+        .box{
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+
+            
+
+            .card{
+                display: flex;
+                flex-direction: column;
+                width: 400px;
+                height: auto;
+                margin: 20px;
+
+                img{
+                    width: 100%;
+                }
+            }
+        }
+
+            
+    }
+}
