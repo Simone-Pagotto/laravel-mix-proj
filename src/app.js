@@ -4,12 +4,13 @@ var app = new Vue ({
     data: {
         navMenu: false,
         githubProjects: [
-            {'imageUrl':'img/boolflix.PNG','title' : 'Boolflix'},
-            {'imageUrl':'img/boolflix.PNG','title' : 'Boolflix'},
-            {'imageUrl':'img/boolflix.PNG','title' : 'Boolflix'},
-            {'imageUrl':'img/boolflix.PNG','title' : 'Boolflix'},
-            {'imageUrl':'img/boolflix.PNG','title' : 'Boolflix'},
-            {'imageUrl':'img/boolflix.PNG','title' : 'Boolflix'},
+            { 'imageUrl': 'img/boolflix.PNG', 'title': 'Boolflix', 'url':'https://simone-pagotto.github.io/vue-boolflix/'},
+            { 'imageUrl': 'img/boolflix.PNG', 'title': 'Boolflix', 'url':'https://simone-pagotto.github.io/vue-boolflix/'},
+            { 'imageUrl': 'img/boolflix.PNG', 'title': 'Boolflix', 'url':'https://simone-pagotto.github.io/vue-boolflix/'},
+            { 'imageUrl': 'img/boolflix.PNG', 'title': 'Boolflix', 'url':'https://simone-pagotto.github.io/vue-boolflix/'},
+            { 'imageUrl': 'img/boolflix.PNG', 'title': 'Boolflix', 'url':'https://simone-pagotto.github.io/vue-boolflix/'},
+            { 'imageUrl': 'img/boolflix.PNG', 'title': 'Boolflix', 'url':'https://simone-pagotto.github.io/vue-boolflix/'},
+    
             
         ]
     },

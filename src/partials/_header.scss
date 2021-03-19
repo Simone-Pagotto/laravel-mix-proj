@@ -1,29 +1,343 @@
 @use "var.scss";
+$amount: 5;
 
-nav{
+
+body {
+  width: 100%;
+  height: 100%; 
+  //overflow: hidden;
+}
+
+.container{
+    background-color: var.$dark-color;
+    /* mask-image: radial-gradient(
+    white 0%,
+    white 30%,
+    transparent 80%,
+    transparent
+  ); */
+    position:relative;
+    /* overflow:hidden;*/
+    width: 100%;
+    height: auto;
+}
+
+.hex-grid__list {
+    --amount: 5;
+    --counter: 1; 
+    display: grid;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    grid-template-columns: repeat(var(--amount), 1fr 2fr) 1fr;
+    grid-gap: 1rem 2rem;
+}
+
+//some color
+.hex-grid__item .hex-grid__content {
+    background-color: var.$primary-color;//transparent;
+    opacity: 0.3;
+}
+
+/* .hex-grid__item.hidden {
+    display:none;
+}
+
+.hex-grid__item.top-less {
+    clip-path: polygon(0 50%, 100% 50%, 75% 100%, 25% 100%, 0 50%, 25% 0);
+}
+
+.hex-grid__item.bottom-less {
+    clip-path: polygon(75% 0, 100% 50%, 75% 100%, 100% 50%, 0 50%, 25% 0);
+} */
+
+.hex-grid__item {
+    position: relative;
+    grid-column: 1 / span 3;
+    grid-row: calc(var(--counter) + var(--counter)) / span 2;
+    height: 0;
+    padding-bottom: 90%;
+
+    // Columns
+    @for $i from 1 through $amount {
+        &:nth-of-type(#{$amount}n + #{$i}) {
+            grid-column: #{$i + $i - 1} / span 3;
+            @if $i % 2 == 0 {
+                grid-row: calc(var(--counter) + var(--counter) - 1) / span 2;
+            }
+        }
+    }
+
+    //rows
+    @for $i from 1 through 20 {
+        &:nth-of-type(n + #{$i * $amount + 1}) {
+            --counter: #{$i + 1};
+        }
+    }
+}
+
+.hex-grid__content {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    clip-path: polygon(75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%, 25% 0);
+    padding: 2rem 25%;
+}
+
+$block: '.hex-grid';
+
+@mixin grid-item($amount) {
+    @for $i from 1 through $amount {
+        &:nth-of-type(#{$amount}n + #{$i}) {
+            grid-column: #{$i + $i - 1} / span 3;
+            @if ($i % 2 == 0 ){
+                grid-row: calc(var(--counter) + var(--counter) - 1) / span 2;
+            }
+            @else{
+                grid-row: calc(var(--counter) + var(--counter))/span 2;
+            }
+        }
+    }
+
+    @for $i from 1 through 20 {
+        &:nth-of-type(n + #{$i * $amount + 1}) {
+            --counter: #{$i + 1};
+        }
+    }
+}
+
+#{$block} {
+    display: flex;
+	justify-content: center;
+
+    &__list {
+        --amount: 5;
+        position: relative;
+        padding: 0;
+		margin: 0;
+		list-style-type: none;
+		display: grid;
+        grid-template-columns: repeat(var(--amount), 1fr 2fr) 1fr;
+		grid-gap: 2.5rem 5rem;
+    }
+
+    &__item {
+        position: relative;
+		grid-column: 1 / span 3;
+		grid-row: calc(var(--counter) + var(--counter)) / span 2;
+		filter: drop-shadow(0 0 10px rgba(#444, .08));
+		height: 0;
+		padding-bottom: 90%;
+    }
+
+    &__content {
+        position: absolute;
+		height: 100%;
+		width: 100%;
+		font-size: 1.125rem;
+		color: #111111;
+		background-color: white;
+		clip-path: polygon(75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%, 25% 0);
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		padding: 2rem 25%;
+		text-decoration: none;
+		text-align: center;
+		transition: transform .24s ease-out;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+	#{$block} {
+		&__list {
+            --amount: 5;
+			--counter: 1;
+		}
+
+		&__item {
+			@include grid-item(5);
+		}
+	}
+}
+
+@media screen and (min-width: 1120px) and (max-width: 1439px) {
+	#{$block} {
+		&__list {
+            --amount: 5;
+			--counter: 1;
+		}
+
+		&__item {
+			@include grid-item(5);
+		}
+	}
+}
+
+@media screen and (min-width: 840px) and (max-width: 1119px) {
+	#{$block} {
+		&__list {
+            --amount: 3;
+			--counter: 1;
+			grid-gap: 1.5rem 3rem;
+		}
+
+		&__item {
+			@include grid-item(3);
+		}
+	}
+}
+
+@media screen and (min-width: 480px) and (max-width: 839px) {
+	#{$block} {
+		&__list {
+			--amount: 2;
+			--counter: 1;
+			grid-gap: 1.5rem 3rem;
+		}
+
+		&__item {
+			@include grid-item(2);
+		}
+	}
+}
+
+@media screen and (max-width: 479px) {
+	#{$block} {
+		&__list {
+            --amount: 1;
+			grid-gap: 1.5rem 3rem;
+		}
+	}
+}
+
+
+//BACKGROUND PARTICLES
+
+.circle-container {
+  $particleNum: 200;
+  $particleColor: hsl(180, 100%, 80%);
+
+  position: absolute;
+  transform: translateY(-10vh);
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+
+  .circle {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    mix-blend-mode: screen;
+    background-image: radial-gradient(
+      hsl(180, 100%, 80%),
+      hsl(180, 100%, 80%) 10%,
+      hsla(180, 100%, 80%, 0) 56%
+    );
+
+    animation: fadein-frames 200ms infinite, scale-frames 2s infinite;
+
+    @keyframes fade-frames {
+      0% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.7;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes scale-frames {
+      0% {
+        transform: scale3d(0.4, 0.4, 1);
+      }
+
+      50% {
+        transform: scale3d(2.2, 2.2, 1);
+      }
+
+      100% {
+        transform: scale3d(0.4, 0.4, 1);
+      }
+    }
+  }
+
+  $particleBaseSize: 8;
+
+  
+  @for $i from 1 through $particleNum {
+    &:nth-child(#{$i}) {
+      $circleSize: random($particleBaseSize);
+      width: $circleSize + px;
+      height: $circleSize + px;
+
+      $startPositionY: random(10) + 100;
+      $framesName: "move-frames-" + $i;
+      $moveDuration: 28000 + random(9000) + ms;
+
+      animation-name: #{$framesName};
+      animation-duration: $moveDuration;
+      animation-delay: random(37000) + ms;
+
+      @keyframes #{$framesName} {
+        from {
+          //moltiplicando per valori x sulla start position si può ricoprire tutto
+          transform: translate3d(
+            #{random(100) + vw},
+            #{(2 * $startPositionY) + vh},
+            0
+          );
+        }
+
+        to {
+          
+          transform: translate3d(
+            #{random(100) + vw},
+            #{- $startPositionY - random(30) + vh},
+            0
+          );
+        }
+      }
+
+      .circle {
+        animation-delay: random(4000) + ms;
+      }
+    }
+  }
+}
+
+
+//FIRST TRY
+/* nav{
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: var.$primary-color;
-    width: 100%;
-    height: 200px;
+    width: var.$vw;
+    height: var.$vh;
 
     .hexagon{
         background-color: white;
         position:relative;
-        width: 100px;
-        height: calc(100px / 1.73);
-        margin: calc(100px / 1.73 / 2) 50px;
+        width: var.$hex-unit;
+        height: calc(#{var.$hex-unit} / 1.73);
+        margin: calc(#{var.$hex-unit} / 1.73 / 2);
 
         img{
-            width: 60px;
+            width: calc(0.6 * #{var.$hex-unit});
             position: absolute;
             top: 50%;  
             left: 50%;
 
             transform: translate(-50%, -50%);
-            /* left: 20px;
-            bottom: -5px; */
+            
             z-index: 5;
         }
     }
@@ -32,70 +346,39 @@ nav{
     .hexagon::before, .hexagon::after{
         content:"";
         position: absolute;
-        border-left: 50px solid transparent;
-        border-right: 50px solid transparent;
+        border-left: var.$hex-unit / 2 solid transparent;
+        border-right: var.$hex-unit / 2 solid transparent;
         
     }
 
     .hexagon::before{
         bottom: 100%;
-        border-bottom:calc(100px / 1.73 /2) solid white;
+        border-bottom:calc(#{var.$hex-unit} / 1.73 /2) solid white;
     }
 
     .hexagon::after{
         top: 100%;
-        border-top:calc(100px / 1.73 /2) solid white;
+        border-top:calc(#{var.$hex-unit}  / 1.73 /2) solid white;
     }
 
-    
-
-    .menu{
-        font-family: var.$font-stack;
-        font-size: xx-large;
-        text-transform: uppercase;
-        display: flex;
-        justify-content: space-between;
-        list-style: none;
-
-        li{
-            margin:20px;
-            color: var.$dark-color;
+    .hexagon-ruler{
+        background-color: white;
+        position: absolute;
+        width: 0.9 * var.$vw;
+        height: 5px;
+        
+        
+        &.back{
+            transform: rotate(30deg);
         }
-    }
-
-    .none{
-        display:none;
-    }
-
-
-}
-
-.hero{
-    width:100%;
-    height: 700px;
-    background-color: var.$dark-color;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    .circle{
-        background-color: var.$light-color;
-        width: 500px;
-        height: 500px;
-        border-radius: 50%;
-        position: relative;
-        overflow: hidden;
-
-        img{
-            position: absolute;
-            top: 50%;  
-            left: 50%;
-
-            transform: translate(-50%, -50%);
-
-            width:60%;
-            
+        &.slash{
+            transform: rotate(-30deg);
         }
+        &.vert{
+            width: 100vh;
+            transform: rotate(90deg);
+        }
+
     }
-    
-}
+} */
 
